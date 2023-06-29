@@ -1,15 +1,27 @@
-const mysql = require("mysql");
+const sql = require('mssql');
 
-const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "123456",
-  database: "udemy_delivery",
-});
 
-db.connect(function (err) {
-  if (err) throw err;
-  console.log("DATABASE CONNECTED!");
-});
+const dbConfig = {
+  server: 'PC-CARLOS',
+  database: 'FullStackPrueba',
+  user: 'sa',
+  password: '12345678',
+  options: {
+    trustServerCertificate: true, // Si usas certificado SSL
+  },
+};
 
-module.exports = db;
+
+const getConnection = async () => {
+  try {
+    const pool = await sql.connect(dbConfig);
+    return pool;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+module.exports = {
+  sql,
+   getConnection
+}

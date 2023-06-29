@@ -2,7 +2,6 @@
 const express = require("express");
 const http = require("http");
 const logger = require("morgan");
-
 const cors = require("cors");
 
 const RouterMain = require("../router");
@@ -10,7 +9,7 @@ class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
-    // Conectar a DB    // Http server
+    // Http server
     this.server = http.createServer(this.app);
   }
 
